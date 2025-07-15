@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Landing Page</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        .nav { position: fixed; top: 0; width: 100%; background: #4a90e2; padding: 15px 20px; 
+               display: flex; justify-content: space-between; transition: background 0.5s; z-index: 1000; }
+        .nav.scrolled { background: #ff6f61; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .nav a, .dropdown-btn { color: white; text-decoration: none; font-size: 18px; padding: 5px 10px; }
+        .nav a:hover, .dropdown-content a:hover { color: #f7d794; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content { display: none; position: absolute; background: #4a90e2; min-width: 120px; 
+                           box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a { display: block; padding: 10px; }
+        .content { margin-top: 70px; padding: 20px; background: linear-gradient(135deg, #e6f3ff, #fff0f5); }
+        section { min-height: 100vh; padding: 80px 20px; text-align: center; }
+        h1 { color: #2e2e2e; margin-bottom: 20px; }
+        p { color: #555; font-size: 16px; line-height: 1.5; }
+        .form { margin-top: 20px; }
+        .form input, .form button { padding: 10px; margin: 5px; }
+        @media (max-width: 600px) { .nav { flex-direction: column; text-align: center; }
+            .nav a, .dropdown-btn { margin: 5px 0; } .dropdown-content { position: static; width: 100%; } }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div><a href="#home">Home</a></div>
+        <div class="dropdown">
+            <a href="#" class="dropdown-btn">Services</a>
+            <div class="dropdown-content">
+                <a href="#web">Web Dev</a>
+                <a href="#design">Design</a>
+            </div>
+        </div>
+        <div><a href="#contact">Contact</a></div>
+    </div>
+    <div class="content">
+        <section id="home"><h1>Welcome to My Advanced Page</h1>
+            <p>Scroll to explore sections with an interactive nav!</p></section>
+        <section id="web"><h1>Web Development</h1>
+            <p>Learn about web skills here.</p></section>
+        <section id="design"><h1>Design Services</h1>
+            <p>Creative design solutions await.</p></section>
+        <section id="contact"><h1>Contact Us</h1>
+            <div class="form">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <button onclick="alert('Form submitted!')">Submit</button>
+            </div></section>
+    </div>
+    <script>
+        // Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
